@@ -1,0 +1,56 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: lowercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.loader {
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+}
+.loader__text--preload {
+    color: rgba(22, 22, 22, 0.1);
+}
+/*当mask向右移动的过程中，原本text--progress也应向右移动，因为它属于mask的一部分，
+但与此同时progress向左恢复到translate：0；左右移动的速度相同，所以progress不动，
+但progress一步步落入mask的可显示区域*/
+.loader__mask {
+    position: absolute;
+    overflow: hidden;
+    transform: translateX(-100%);
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+    pointer-events: none;
+}
+.loader__text--progress {
+    color: #161616;
+    transform: translateX(100%);
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.loader:hover .loader__mask {
+    transform: translateX(0);
+}
+.loader:hover .loader__mask .loader__text--progress {
+    transform: translateX(0);
+}
+
+
+
+
+
+
